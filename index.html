@@ -3,142 +3,305 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our School Memories</title>
+  <title>Forever 11th Grade</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
+    :root {
+      --primary: #ff6b6b;
+      --secondary: #ffe8d6;
+      --bg: #fdf6f0;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fdf6f0;
+      background-color: var(--bg);
       color: #333;
       line-height: 1.6;
     }
+
+    a { color: inherit; text-decoration: none; }
+
     header {
       height: 100vh;
-      background: linear-gradient(to bottom right, #ffa69e, #ff686b);
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: white;
       text-align: center;
       padding: 0 20px;
+      color: white;
+      position: relative;
+      overflow: hidden;
     }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      width: 100%;
+      height: 100px;
+      background: url('https://svgshare.com/i/xiZ.svg') repeat-x;
+      background-size: contain;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://photolife.co.nz/wp-content/uploads/Classic-ClassTeam.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    header h1, header p {
+      z-index: 1;
+    }
+
     header h1 {
-      font-size: 3rem;
+      font-size: 4rem;
       margin-bottom: 10px;
+      animation: fadeInDown 1s ease-in-out;
     }
+
     header p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       max-width: 600px;
+      animation: fadeInUp 1s ease-in-out;
     }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
     section {
-      padding: 60px 20px;
-      max-width: 1000px;
+      padding: 80px 20px;
+      max-width: 1200px;
       margin: auto;
     }
-    .gallery img {
-      width: 100%;
-      max-width: 300px;
-      margin: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: var(--primary);
+      position: relative;
     }
-    .gallery {
+
+    h2::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .gallery, .superlatives, .profiles {
       display: flex;
       flex-wrap: wrap;
+      gap: 20px;
       justify-content: center;
     }
-    .memory-wall {
-      background: #ffe8d6;
+
+    .gallery img, .profile img {
+      width: 100%;
+      max-width: 280px;
       border-radius: 15px;
-      padding: 30px;
-      margin-top: 40px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-    .memory {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    .gallery img:hover, .profile img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
+
+    .memory-wall, .superlatives {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .memory, .superlative {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
     .timeline {
-      border-left: 4px solid #ffa69e;
+      border-left: 4px solid var(--primary);
       padding-left: 20px;
-      margin-top: 40px;
     }
+
     .event {
       margin-bottom: 30px;
+      position: relative;
     }
-    .event h4 {
-      margin-bottom: 5px;
-      color: #ff686b;
+
+    .event::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      background: var(--primary);
+      border-radius: 50%;
+      position: absolute;
+      left: -30px;
+      top: 5px;
     }
+
+    .teacher-msg {
+      background: #fceae6;
+      padding: 20px;
+      border-left: 5px solid var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .profiles {
+      gap: 30px;
+    }
+
+    .profile {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      word-wrap: break-word;
+    }
+
     footer {
-      background: #ff686b;
+      background: var(--primary);
       color: white;
       text-align: center;
-      padding: 30px 20px;
-      margin-top: 60px;
+      padding: 60px 20px;
+    }
+
+    footer p {
+      max-width: 600px;
+      margin: auto;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Our Last Year Together</h1>
-    <p>A place where we can relive the memories, smiles, and laughs of our school days.</p>
+    <h1>Forever 11th Grade</h1>
+    <p>A special place to relive the laughter, love, and chaos of our final school year.</p>
   </header>
 
   <section>
-    <h2>Gallery Highlights</h2>
+    <h2>Photo Gallery</h2>
     <div class="gallery">
-      <img src="https://via.placeholder.com/300x200?text=School+Trip" alt="Memory 1"/>
-      <img src="https://via.placeholder.com/300x200?text=Sports+Day" alt="Memory 2"/>
-      <img src="https://via.placeholder.com/300x200?text=Farewell+Party" alt="Memory 3"/>
+      <img src="https://via.placeholder.com/300x200?text=Group+Selfie" alt="Memory 1">
+      <img src="https://via.placeholder.com/300x200?text=Science+Fair" alt="Memory 2">
+      <img src="https://via.placeholder.com/300x200?text=Last+Lunch" alt="Memory 3">
+      <img src="https://via.placeholder.com/300x200?text=Class+Trip" alt="Memory 4">
     </div>
   </section>
 
   <section>
     <h2>Memory Wall</h2>
     <div class="memory-wall">
-      <div class="memory">
-        <strong>Ali:</strong> "I'll never forget the prank we pulled on the teacher during the picnic!"
+      <div class="memory">"Remember when the whole class got punished together? Best bonding moment ever!"</div>
+      <div class="memory">"Lunch breaks, volleyball, and never-ending gossip — best parts of school."</div>
+      <div class="memory">"I’ll miss every bit of it, even the stress before exams!"</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Timeline of the Year</h2>
+    <div class="timeline">
+      <div class="event">
+        <h4>August 2024</h4>
+        <p>First day back — full of hopes, new notebooks, and sleepy eyes.</p>
       </div>
-      <div class="memory">
-        <strong>Fatima:</strong> "Thank you all for the best year of my life. So many memories!"
+      <div class="event">
+        <h4>October 2024</h4>
+        <p>Trip to Japan — lifetime memories and inside jokes born here!</p>
+      </div>
+      <div class="event">
+        <h4>February 2025</h4>
+        <p>Mock Exams — survival mode activated!</p>
+      </div>
+      <div class="event">
+        <h4>April 2025</h4>
+        <p>Farewell rehearsals, tears, and last hugs in uniforms.</p>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>Timeline</h2>
-    <div class="timeline">
-      <div class="event">
-        <h4>September 2024</h4>
-        <p>Back to school — excited and nervous to be seniors!</p>
+    <h2>Class Superlatives</h2>
+    <div class="superlatives">
+      <div class="superlative">
+        <strong>Class Clown</strong><br>Yusuf “The Legend”
       </div>
-      <div class="event">
-        <h4>October 2024</h4>
-        <p>School trip to Japan — unforgettable adventure!</p>
+      <div class="superlative">
+        <strong>Most Likely to Succeed</strong><br>Fatima “CEO in the Making”
       </div>
-      <div class="event">
-        <h4>February 2025</h4>
-        <p>Mock exams and endless study sessions!</p>
-      </div>
-      <div class="event">
-        <h4>May 2025</h4>
-        <p>Farewell Party — tears, hugs, and memories forever.</p>
+      <div class="superlative">
+        <strong>Best Dressed</strong><br>Ali “Fashion Icon”
       </div>
     </div>
   </section>
 
+  <section>
+    <h2>Our Classmates</h2>
+    <div class="profiles">
+      <div class="profile">
+        <img src="hasan.JPG" alt="Profile">
+        <strong>Hina</strong><br>"Chatterbox of the Year"
+      </div>
+      <div class="profile">
+        <img src="https://via.placeholder.com/100" alt="Profile">
+        <strong>Ahmed</strong><br>"Quiet but Genius"
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Words from Our Teachers</h2>
+    <div class="teacher-msg">
+      <strong>Ms. Ayesha:</strong> "This batch was special. You all have made me proud every single day."
+    </div>
+    <div class="teacher-msg">
+      <strong>Sir Imran:</strong> "Keep learning, keep laughing. The world needs your energy!"
+    </div>
+    <div class="teacher-msg">
+      <strong>Ms. Bijila:</strong> "Yevryday I am telling you it is."
+    </div>
+    <div class="teacher-msg">
+      <strong>Ms. Sindhu:</strong> "One knock on your head!"
+    </div>
+  </section>
+
   <footer>
-    “We didn’t realize we were making memories, we just knew we were having fun.”
+    <p>“Sometimes you will never know the value of a moment, until it becomes a memory.” — Dr. Seuss</p>
   </footer>
 
 </body>
