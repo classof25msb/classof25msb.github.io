@@ -130,14 +130,26 @@
     </div>
   </section>
   
-    <section>
-    <h2>Memory Wall</h2>
-    <form id="thoughts-form">
-      <textarea id="thought-input" placeholder="Share your thought..."></textarea>
-      <button type="submit">Submit</button>
-    </form>
-    <div class="thoughts-display" id="thoughts-container"></div>
-  </section>
+<section>
+  <h2>Memory Wall</h2>
+  <form id="thoughts-form">
+    <input 
+      type="text" 
+      id="name-input" 
+      placeholder="Enter your name" 
+      required
+      style="width: 100%; padding: 10px; margin-bottom: 10px; border: 2px solid var(--primary); border-radius: 8px;"
+    />
+    <textarea 
+      id="thought-input" 
+      placeholder="Share your thought..." 
+      required
+      style="width: 100%; padding: 10px; border: 2px solid var(--primary); border-radius: 8px; resize: vertical; min-height: 100px;"
+    ></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  <div class="thoughts-display" id="thoughts-container"></div>
+</section>
 
   <section>
     <h2>Timeline of the Year</h2>
@@ -267,44 +279,54 @@
   </footer>
 
   <script>
-    const form = document.getElementById('thoughts-form');
-    const input = document.getElementById('thought-input');
-    const container = document.getElementById('thoughts-container');
+  const form = document.getElementById('thoughts-form');
+  const nameInput = document.getElementById('name-input');
+  const thoughtInput = document.getElementById('thought-input');
+  const container = document.getElementById('thoughts-container');
 
-    // Load thoughts from localStorage
-    let thoughts = JSON.parse(localStorage.getItem('thoughts')) || [];
+  // Load thoughts from localStorage - each thought is now an object {name, text}
+  let thoughts = JSON.parse(localStorage.getItem('thoughts')) || [];
 
-    function renderThoughts() {
-      container.innerHTML = '';
-      thoughts.forEach((text, index) => {
-        const div = document.createElement('div');
-        div.className = 'thought';
-        div.innerHTML = `
-          ${text}
-          <button onclick="deleteThought(${index})">&times;</button>
-        `;
-        container.appendChild(div);
-      });
-    }
+  function renderThoughts() {
+    container.innerHTML = '';
+    thoughts.forEach(({name, text}, index) => {
+      const div = document.createElement('div');
+      div.className = 'thought';
+      div.innerHTML = `
+        <strong>${escapeHtml(name)}:</strong> ${escapeHtml(text)}
+        <button onclick="deleteThought(${index})">&times;</button>
+      `;
+      container.appendChild(div);
+    });
+  }
 
-    function deleteThought(index) {
-      thoughts.splice(index, 1);
+  function deleteThought(index) {
+    thoughts.splice(index, 1);
+    localStorage.setItem('thoughts', JSON.stringify(thoughts));
+    renderThoughts();
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = nameInput.value.trim();
+    const text = thoughtInput.value.trim();
+    if (name && text) {
+      thoughts.push({ name, text });
       localStorage.setItem('thoughts', JSON.stringify(thoughts));
+      nameInput.value = '';
+      thoughtInput.value = '';
       renderThoughts();
     }
+  });
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const newThought = input.value.trim();
-      if (newThought) {
-        thoughts.push(newThought);
-        localStorage.setItem('thoughts', JSON.stringify(thoughts));
-        input.value = '';
-        renderThoughts();
-      }
-    });
+  // Simple escape function to avoid HTML injection in display
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
 
-    renderThoughts(); // initial load
+  renderThoughts();
   </script>
 </body>
 </html>
