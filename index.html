@@ -8,203 +8,105 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
     :root {
-      --primary: #ff6b6b;
-      --secondary: #ffe8d6;
-      --bg: #fdf6f0;
+      --primary: #1e3a8a;
+      --secondary: #bfdbfe;
+      --bg: #eff6ff;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--bg);
-      color: #333;
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #1e293b; line-height:1.6; }
+    a { color: inherit; text-decoration:none; }
     header {
-      height: 100vh;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-      color: white;
-      position: relative;
-      overflow: hidden;
+      height:100vh;
+      background: linear-gradient(to right, #3b82f6, #60a5fa);
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; padding:0 20px; color:white; position:relative; overflow:hidden;
     }
-
     header::after {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      width: 100%;
-      height: 100px;
-      background: url('https://svgshare.com/i/xiZ.svg') repeat-x;
-      background-size: contain;
+      content:''; position:absolute; bottom:-20px; width:100%; height:100px;
+      background:url('https://svgshare.com/i/xiZ.svg') repeat-x; background-size:contain;
     }
-
     header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('IMG_2270.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.15;
-      z-index: 0;
+      content:''; position:absolute; top:0; left:0; width:100%; height:100%;
+      background-image:url('IMG_2270.jpg'); background-size:cover; background-position:center;
+      opacity:0.1; z-index:0;
     }
-
-    header h1, header p {
-      z-index: 1;
-    }
-
-    header h1 {
-      font-size: 4rem;
-      margin-bottom: 10px;
-      animation: fadeInDown 1s ease-in-out;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      animation: fadeInUp 1s ease-in-out;
-    }
-
-    @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
+    header h1, header p { z-index:1; }
+    header h1 { font-size:4rem; margin-bottom:10px; animation:fadeInDown 1s ease-in-out; }
+    header p { font-size:1.2rem; max-width:600px; animation:fadeInUp 1s ease-in-out; }
+    @keyframes fadeInDown { 0%{opacity:0; transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);} }
+    @keyframes fadeInUp { 0%{opacity:0; transform:translateY(20px);}100%{opacity:1;transform:translateY(0);} }
+    section { padding:80px 20px; max-width:1200px; margin:auto; }
     h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      color: var(--primary);
-      position: relative;
+      text-align:center; font-size:2.8rem; margin-bottom:40px;
+      color:var(--primary); position:relative;
     }
-
     h2::after {
-      content: '';
-      width: 60px;
-      height: 4px;
-      background: var(--primary);
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
+      content:''; width:60px; height:4px;
+      background:var(--primary); position:absolute; bottom:-10px; left:50%;
+      transform:translateX(-50%);
     }
-
-    .gallery, .superlatives, .profiles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
+    .gallery, .profiles, .memory-wall, .thoughts-display {
+      display:flex; flex-wrap:wrap; gap:20px; justify-content:center;
     }
-
     .gallery img, .profile img {
-      width: 100%;
-      max-width: 280px;
-      border-radius: 15px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width:100%; max-width:280px;
+      border-radius:15px;
+      transition: transform .3s, box-shadow .3s;
+      box-shadow:0 4px 15px rgba(0,0,0,0.1);
     }
-
     .gallery img:hover, .profile img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transform:scale(1.05);
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
     }
-
-    .memory-wall, .superlatives {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+    .memory-wall, .thoughts-display {
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
     }
-
-    .memory, .superlative {
-      background: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      text-align: center;
+    .memory, .thought, .superlative {
+      background:white; padding:20px; border-radius:15px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.1);
+      text-align:center; font-style:italic; color:#334155; position:relative;
     }
-
-    .timeline {
-      border-left: 4px solid var(--primary);
-      padding-left: 20px;
+    .thought button {
+      position:absolute;
+      top:8px;
+      right:10px;
+      background:transparent;
+      border:none;
+      color:#c53030;
+      font-size:18px;
+      cursor:pointer;
     }
-
-    .event {
-      margin-bottom: 30px;
-      position: relative;
-    }
-
+    .timeline { border-left:4px solid var(--primary); padding-left:20px; }
+    .event { position:relative; margin-bottom:30px; }
     .event::before {
-      content: '';
-      width: 14px;
-      height: 14px;
-      background: var(--primary);
-      border-radius: 50%;
-      position: absolute;
-      left: -30px;
-      top: 5px;
+      content:''; width:14px; height:14px; background:var(--primary);
+      border-radius:50%; position:absolute; left:-30px; top:5px;
     }
-
     .teacher-msg {
-      background: #fceae6;
-      padding: 20px;
-      border-left: 5px solid var(--primary);
-      margin-bottom: 20px;
+      background:#dbeafe; padding:20px;
+      border-left:5px solid var(--primary); margin-bottom:20px;
     }
-
-    .profiles {
-      gap: 30px;
+    .profiles { gap:30px; }
+    .profile { background:white; padding:20px; border-radius:12px;
+      width:200px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1);
     }
-
-    .profile {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      width: 200px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      word-wrap: break-word;
+    .profile strong { display:block; margin-top:10px; color:var(--primary); }
+    #thoughts-form { max-width:600px; margin: 0 auto 40px; }
+    #thoughts-form textarea {
+      width:100%; padding:10px; border:2px solid var(--primary);
+      border-radius:8px; resize:vertical; min-height:100px;
     }
-
+    #thoughts-form button {
+      margin-top:10px; padding:12px 24px;
+      background:var(--primary); color:white;
+      border:none; border-radius:8px; cursor:pointer;
+      transition: background .3s;
+    }
+    #thoughts-form button:hover { background:#1b256e; }
     footer {
-      background: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
+      background:var(--primary); color:white; text-align:center; padding:60px 20px;
     }
-
-    footer p {
-      max-width: 600px;
-      margin: auto;
-      font-size: 1.2rem;
-    }
+    footer p { max-width:600px; margin:auto; font-size:1.2rem; }
   </style>
 </head>
 <body>
@@ -216,7 +118,6 @@
 
   <audio autoplay loop hidden>
     <source src="Abhi Na Jao Chhod Kar - Hum Dono (1962) 320 Kbps.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <section>
@@ -228,43 +129,28 @@
       <img src="https://via.placeholder.com/300x200?text=Class+Trip" alt="Memory 4">
     </div>
   </section>
-
-  <section>
+  
+    <section>
     <h2>Memory Wall</h2>
-    <div class="memory-wall">
-      <div class="memory">"Remember when the whole class got punished together? Best bonding moment ever!"</div>
-      <div class="memory">"Lunch breaks, volleyball, and never-ending gossip — best parts of school."</div>
-      <div class="memory">"I’ll miss every bit of it, even the stress before exams!"</div>
-    </div>
+    <form id="thoughts-form">
+      <textarea id="thought-input" placeholder="Share your thought..."></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <div class="thoughts-display" id="thoughts-container"></div>
   </section>
 
   <section>
     <h2>Timeline of the Year</h2>
     <div class="timeline">
-      <div class="event">
-        <h4>August 2024</h4>
-        <p>First day back — full of hopes and sleepy eyes.</p>
-      </div>
-      <div class="event">
-        <h4>October 2024</h4>
-        <p>Trip to Japan — lifetime memories!</p>
-      </div>
-      <div class="event">
-        <h4>February 2025</h4>
-        <p>Mock Exams — survival mode activated!</p>
-      </div>
-      <div class="event">
-        <h4>May 2025</h4>
-        <p>Boards!!!</p>
-      </div>
-      <div class="event">
-        <h4>June 2025</h4>
-        <p>Farewell, tears, and last hugs in uniforms.</p>
-      </div>
+      <div class="event"><h4>August 2024</h4><p>First day back — nerves and excitement in the air.</p></div>
+      <div class="event"><h4>October 2024</h4><p>Trip to Japan — one for the books!</p></div>
+      <div class="event"><h4>February 2025</h4><p>Mock Exams — caffeine and survival instincts.</p></div>
+      <div class="event"><h4>May 2025</h4><p>The Boards — stress, focus, and growth.</p></div>
+      <div class="event"><h4>June 2025</h4><p>Farewell — bittersweet goodbyes and blue hearts.</p></div>
     </div>
   </section>
 
-  <section>
+ <section>
     <h2>Classmates</h2>
     <div class="profiles">
       <div class="profile">
@@ -366,19 +252,49 @@
     </div>
   </section>
 
-  <section>
-    <h2>Words from Teachers</h2>
-    <div class="teacher-msg">
-      <strong>Ms. Bijila:</strong> "Yevryday I am telling you it is."
-    </div>
-    <div class="teacher-msg">
-      <strong>Ms. Sindhu:</strong> "One knock on your head!"
-    </div>
-  </section>
-
   <footer>
     <p>“Sometimes you will never know the value of a moment, until it becomes a memory.”</p>
   </footer>
 
+  <script>
+    const form = document.getElementById('thoughts-form');
+    const input = document.getElementById('thought-input');
+    const container = document.getElementById('thoughts-container');
+
+    // Load thoughts from localStorage
+    let thoughts = JSON.parse(localStorage.getItem('thoughts')) || [];
+
+    function renderThoughts() {
+      container.innerHTML = '';
+      thoughts.forEach((text, index) => {
+        const div = document.createElement('div');
+        div.className = 'thought';
+        div.innerHTML = `
+          ${text}
+          <button onclick="deleteThought(${index})">&times;</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function deleteThought(index) {
+      thoughts.splice(index, 1);
+      localStorage.setItem('thoughts', JSON.stringify(thoughts));
+      renderThoughts();
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const newThought = input.value.trim();
+      if (newThought) {
+        thoughts.push(newThought);
+        localStorage.setItem('thoughts', JSON.stringify(thoughts));
+        input.value = '';
+        renderThoughts();
+      }
+    });
+
+    renderThoughts(); // initial load
+  </script>
 </body>
 </html>
